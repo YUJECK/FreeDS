@@ -12,10 +12,10 @@ namespace Internal.WorldBase
         public TilesMap(Point mapSize)
         {
             MapSize = mapSize;
-
-            for (int x = 0; x <= MapSize.X; x++)
+            
+            for (int x = MapSize.X/-2; x <= MapSize.X/2; x++)
             {
-                for (int y = 0; y <= MapSize.Y; y++)
+                for (int y = MapSize.Y/-2; y <= MapSize.Y/2; y++)
                 {
                     _tiles.Add(new Point(x, y), null);
                 }
@@ -23,7 +23,7 @@ namespace Internal.WorldBase
         }
         
         public bool ContainsTileAt(Point atPoint)
-            => _tiles[atPoint] == null;
+            => _tiles[atPoint] != null;
         
         public Tile GetTileAt(Point atPoint)
             => _tiles[atPoint];
