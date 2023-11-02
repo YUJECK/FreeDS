@@ -1,10 +1,31 @@
+using System;
+using System.Collections.Generic;
+
 namespace Internal.WorldBase
 {
-    public static class World
+    public class World
     {
-        public static float MaxX = 60;
-        public static float MaxY = 60;
-        public static float MinX = -60;
-        public static float MinY = -60;
+        private readonly List<Biome> _biomes;
+        public readonly TilesMap Map = new(WorldSize);
+
+        public static readonly Point WorldSize = new(300, 300);
+
+        public void AddBiome(Biome biome)
+        {
+            _biomes.Add(biome);
+        }
+
+        public bool ContainsBiomeOfType(Type TBiome)
+        {
+            var biome = _biomes.Find((Biome biome) => biome.GetType() == TBiome);
+            return biome != null;
+        }
+        
+        public bool ContainsBiomeOfType(Type TBiome, out Biome biome)
+        {
+            biome = _biomes.Find((Biome biome) => biome.GetType() == TBiome);
+            
+            return biome != null;
+        }
     }
 }
